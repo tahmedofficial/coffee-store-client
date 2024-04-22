@@ -1,4 +1,4 @@
-import bgImg from "../../assets/images/more/11.png"
+import bgImg from "../../assets/images/more/11.png";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import coffeeTitle from "../../assets/images/more/Add New Coffee.png"
 import { Link } from "react-router-dom";
