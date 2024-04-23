@@ -4,11 +4,14 @@ import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const CoffeeCards = ({ coffee, coffees, setCoffees }) => {
 
     const { _id, name, chef, price, photo } = coffee;
+    const { sweetAlert } = useContext(AuthContext);
 
     const handleDelete = id => {
         Swal.fire({
@@ -27,11 +30,7 @@ const CoffeeCards = ({ coffee, coffees, setCoffees }) => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your coffee has been deleted.",
-                                icon: "Success"
-                            });
+                            sweetAlert("Deleted!","Your coffee has been deleted.")
                             const remaining = coffees.filter(coffee => coffee._id !== id);
                             setCoffees(remaining)
                         }
@@ -52,7 +51,9 @@ const CoffeeCards = ({ coffee, coffees, setCoffees }) => {
                 <h3><span className="font-bold">Price: </span> {price}</h3>
             </div>
             <div className="flex flex-col gap-2">
-                <button className="p-2 rounded-lg hover:bg-slate-400 duration-300 bg-primary_button text-white"><FaEye /></button>
+                <Link to={`/coffeeDetails/${_id}`}>
+                    <button className="p-2 rounded-lg hover:bg-slate-400 duration-300 bg-primary_button text-white"><FaEye /></button>
+                </Link>
                 <Link to={`/updateCoffee/${_id}`}>
                     <button className="p-2 rounded-lg hover:bg-slate-400 duration-300 bg-primary_text text-white"><MdEdit /></button>
                 </Link>

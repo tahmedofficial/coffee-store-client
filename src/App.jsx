@@ -1,7 +1,8 @@
-import { Link, useLoaderData } from 'react-router-dom'
+import { useLoaderData } from 'react-router-dom'
 import './App.css'
 import CoffeeCards from './components/CoffeeCards/CoffeeCards';
 import { useState } from 'react';
+import Header from './components/Header/Header';
 
 function App() {
 
@@ -10,16 +11,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-6xl text-purple-600'>Coffee Store{coffees.length}</h1>
-      <Link to='/addCoffee'>
-        <button className='btn'>go user page</button>
-      </Link>
-      <Link to='/signUp'>
-        <button className='btn'>Sign Up</button>
-      </Link>
-      <Link to='/signIn'>
-        <button className='btn'>Sign In</button>
-      </Link>
+      <Header></Header>
       <div className='md:grid grid-cols-2 gap-4 md:w-5/6 lg:w-4/6 mx-auto'>
         {
           coffees.map(coffee => <CoffeeCards
