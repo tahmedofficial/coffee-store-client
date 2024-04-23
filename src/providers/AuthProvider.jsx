@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import Swal from "sweetalert2";
 
@@ -24,6 +24,11 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    const signInUser = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -37,9 +42,10 @@ const AuthProvider = ({ children }) => {
 
     const userInfo = {
         user,
-        signUpUser,
         loading,
         sweetAlert,
+        signUpUser,
+        signInUser,
     }
 
     return (

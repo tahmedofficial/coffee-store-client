@@ -24,7 +24,7 @@ const Users = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/user/${id}`, {
+                fetch(`https://coffee-store-server-umber-five.vercel.app/user/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -61,7 +61,7 @@ const Users = () => {
                                     <th>1</th>
                                     <td>{user.email}</td>
                                     <td>{user.creationTime}</td>
-                                    <td></td>
+                                    <td>{user.lastSignInTime}</td>
                                     <td>
                                         <button onClick={() => handleDelete(user._id)} className="p-2 rounded-lg hover:bg-slate-400 duration-300 bg-red-500 text-white"><MdDelete /></button>
                                     </td>
