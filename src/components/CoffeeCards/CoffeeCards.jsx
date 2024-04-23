@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 
-const CoffeeCards = ({ coffee }) => {
+const CoffeeCards = ({ coffee, coffees, setCoffees }) => {
 
     const { _id, name, chef, price, photo } = coffee;
 
@@ -32,6 +32,8 @@ const CoffeeCards = ({ coffee }) => {
                                 text: "Your coffee has been deleted.",
                                 icon: "Success"
                             });
+                            const remaining = coffees.filter(coffee => coffee._id !== id);
+                            setCoffees(remaining)
                         }
                     })
 
@@ -63,5 +65,7 @@ const CoffeeCards = ({ coffee }) => {
 export default CoffeeCards;
 
 CoffeeCards.propTypes = {
-    coffee: PropTypes.object.isRequired
+    coffee: PropTypes.object.isRequired,
+    coffees: PropTypes.object.isRequired,
+    setCoffees: PropTypes.func
 }
