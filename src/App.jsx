@@ -7,6 +7,7 @@ import bgImg from "../src/assets/images/more/1.png";
 import titleImg from "../src/assets/images/more/Group 9.png";
 import Banner from './components/Banner/Banner';
 import Footer from './components/Footer/Footer';
+import CupCoffee from './components/CupCoffee/CupCoffee';
 
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
             setCoffees={setCoffees}
           ></CoffeeCards>)
         }
+      </div>
+      <div className='relative'>
+        <CupCoffee></CupCoffee>
       </div>
       <div className='relative'>
         <Footer></Footer>
