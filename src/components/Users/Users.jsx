@@ -43,7 +43,7 @@ const Users = () => {
     return (
         <div>
             <Header></Header>
-            <div className="overflow-x- md:w-5/6 mx-auto px-3">
+            <div className="overflow-x- md:w-5/6 mx-auto px-3 mt-16">
                 <table className="table">
                     <thead>
                         <tr>

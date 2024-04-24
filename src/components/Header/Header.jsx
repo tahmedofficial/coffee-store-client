@@ -10,7 +10,7 @@ const Header = () => {
     </>
 
     return (
-        <div className="relative flex justify-center mb-24">
+        <div className="relative flex justify-center">
             <img className="w-full h-32" src={bgHeading} alt="" />
             <div className="absolute top-8 w-full">
                 <nav className="navbar md:w-5/6 mx-auto">
