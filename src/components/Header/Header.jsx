@@ -23,7 +23,7 @@ const Header = () => {
                                 {navItems}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost text-xl text-primary_color bg-primary_button">Mocha</a>
+                        <a className="btn btn-ghost text-xl text-primary_color bg-primary_button">Espresso</a>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="flex gap-6 text-lg">

@@ -4,6 +4,7 @@ import bgImg from "../../assets/images/more/11.png";
 import coffeeTitle from "../../assets/images/more/Update Existing Coffee Details.png"
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import Footer from "../Footer/Footer";
 
 
 const UpdateCoffee = () => {
@@ -119,6 +120,7 @@ const UpdateCoffee = () => {
                 </div>
 
             </div>
+            <Footer></Footer>
         </div>
     );
 };

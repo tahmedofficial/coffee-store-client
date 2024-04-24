@@ -4,6 +4,7 @@ import coffeeTitle from "../../assets/images/more/Add New Coffee.png"
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import Swal from 'sweetalert2'
+import Footer from "../Footer/Footer";
 
 const AddCoffee = () => {
 
@@ -116,6 +117,7 @@ const AddCoffee = () => {
                 </div>
 
             </div>
+            <Footer></Footer>
         </div>
     );
 };

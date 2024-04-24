@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import Footer from "../Footer/Footer";
 
 const SignIn = () => {
 
@@ -69,6 +70,7 @@ const SignIn = () => {
                     </Link>
                 </form>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

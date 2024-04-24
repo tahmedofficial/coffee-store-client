@@ -4,6 +4,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const SignUp = () => {
 
@@ -69,6 +70,7 @@ const SignUp = () => {
                     </Link>
                 </form>
             </div>
+            <Footer></Footer>
         </div>
     );
 };
