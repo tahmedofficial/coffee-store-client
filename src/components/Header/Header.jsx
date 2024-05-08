@@ -1,12 +1,27 @@
 import { Link, NavLink } from "react-router-dom";
 import bgHeading from "../../assets/images/more/15.jpg"
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Header = () => {
+
+    const { signOutUser, user } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        signOutUser()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     const navItems = <>
         <li><NavLink to="/" className={({ isActive }) => isActive ? "border-2 rounded-xl py-2 px-6 text-primary_button font-medium border-primary_button" : "font-medium text-primary_button"}>Home</NavLink></li>
         <li><NavLink to="/addCoffee" className={({ isActive }) => isActive ? "border-2 rounded-xl py-2 px-6 text-primary_button font-medium border-primary_button" : "font-medium text-primary_button"}>Add Coffee</NavLink></li>
         <li><NavLink to="/user" className={({ isActive }) => isActive ? "border-2 rounded-xl py-2 px-6 text-primary_button font-medium border-primary_button" : "font-medium text-primary_button"}>User</NavLink></li>
+        <li><NavLink to="/users2" className={({ isActive }) => isActive ? "border-2 rounded-xl py-2 px-6 text-primary_button font-medium border-primary_button" : "font-medium text-primary_button"}>Users2</NavLink></li>
     </>
 
     return (
@@ -31,9 +46,12 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <Link to="/signIn">
-                            <button className="btn btn-ghost bg-primary_button text-primary_color">Sign In</button>
-                        </Link>
+                        {
+                            user ? <button onClick={handleSignOut} className="btn btn-ghost bg-primary_button text-primary_color">Sign Out</button> :
+                                <Link to="/signIn">
+                                    <button className="btn btn-ghost bg-primary_button text-primary_color">Sign In</button>
+                                </Link>
+                        }
                     </div>
                 </nav>
 

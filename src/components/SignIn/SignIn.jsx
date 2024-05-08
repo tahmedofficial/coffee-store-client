@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 const SignIn = () => {
 
@@ -26,17 +27,23 @@ const SignIn = () => {
                     lastSignInTime
                 }
 
-                fetch("https://coffee-store-server-umber-five.vercel.app/user",{
-                    method: "PATCH",
-                    headers:{
-                        "content-type":"application/json"
-                    },
-                    body: JSON.stringify(user)
-                })
-                .then(res=>res.json())
-                .then(date=>{
-                    console.log(date);
-                })
+                axios.patch("http://localhost:5000/user", user)
+                    .then(data => {
+                        const myData = data.data;
+                        console.log(myData);
+                    })
+
+                // fetch("http://localhost:5000/user",{
+                //     method: "PATCH",
+                //     headers:{
+                //         "content-type":"application/json"
+                //     },
+                //     body: JSON.stringify(user)
+                // })
+                // .then(res=>res.json())
+                // .then(date=>{
+                //     console.log(date);
+                // })
             })
             .catch(error => {
                 console.log(error);

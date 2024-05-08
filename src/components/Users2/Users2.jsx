@@ -1,25 +1,39 @@
-import { useLoaderData } from "react-router-dom";
-import Header from "../Header/Header";
-import { useContext, useState } from "react";
-import { MdDelete } from "react-icons/md";
-import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-// import axios from "axios";
+import Header from "../Header/Header";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { MdDelete } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query";
 
 
-const Users = () => {
+const Users2 = () => {
 
-    const loadedUsers = useLoaderData();
     const { sweetAlert } = useContext(AuthContext);
-    const [users, setUsers] = useState(loadedUsers);
+
+    const { isPending, isError, error, data: users } = useQuery({
+        queryKey: ["users"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/user");
+            return res.json();
+        }
+    })
+
+
+
+
+
+    // const [users, setUsers] = useState([]);
 
     // useEffect(() => {
-    //     axios.get("http://localhost:5000/user")
+    //     fetch("http://localhost:5000/user")
+    //         .then(res => res.json())
     //         .then(data => {
-    //             const myData = data.data;
-    //             console.log(myData);
+    //             setUsers(data)
     //         })
+    //         .catch(error => console.log(error))
     // }, [])
+
+
 
     const handleDelete = (id) => {
 
@@ -40,13 +54,19 @@ const Users = () => {
                     .then(data => {
                         if (data.deletedCount > 0)
                             sweetAlert("Deteted!", "User deleted successfully")
-                        const remaining = users.filter(user => user._id !== id);
-                        setUsers(remaining);
+                        // const remaining = users.filter(user => user._id !== id);
+                        // setUsers(remaining);
                     })
             }
         });
+    }
 
+    if (isPending) {
+        return <span className="loading loading-spinner loading-lg flex justify-center mx-auto mt-52"></span>
+    }
 
+    if(isError){
+        return <h3>{error.message}</h3>
     }
 
     return (
@@ -83,4 +103,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default Users2;

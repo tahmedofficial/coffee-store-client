@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 const SignUp = () => {
 
@@ -24,19 +25,31 @@ const SignUp = () => {
                 // new user has been created
                 const creationTime = result.user?.metadata?.creationTime;
                 const user = { email, creationTime };
-                fetch("https://coffee-store-server-umber-five.vercel.app/user", {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(user)
-                })
-                    .then(res => res.json())
+
+                // using axios
+                axios.post("http://localhost:5000/user", user)
                     .then(data => {
-                        if (data.insertedId) {
+                        const myData = data.data;
+                        // console.log(myData);
+                        if (myData.insertedId) {
                             sweetAlert("Confermation", "User added to the database")
                         }
                     })
+
+                // using fetch
+                // fetch("http://localhost:5000/user", {
+                //     method: "POST",
+                //     headers: {
+                //         "content-type": "application/json"
+                //     },
+                //     body: JSON.stringify(user)
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         if (data.insertedId) {
+                //             sweetAlert("Confermation", "User added to the database")
+                //         }
+                //     })
             })
             .catch()
     }
